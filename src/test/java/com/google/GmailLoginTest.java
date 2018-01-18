@@ -7,7 +7,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
-
+//HomeWork for Lesson 19 Selenium Locators
 public class GmailLoginTest {
     private WebElement emailFieldWE;
     private WebElement nextButton;
