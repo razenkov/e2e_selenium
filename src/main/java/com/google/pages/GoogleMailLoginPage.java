@@ -1,14 +1,11 @@
-package com.google;
+package com.google.pages;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
-import java.util.concurrent.TimeUnit;
-//HomeWork for Lesson 19 Selenium Locators
-public class GmailLoginTest {
+public class GoogleMailLoginPage {
     private WebElement emailFieldWE;
     private WebElement nextButton;
     private WebElement passField;
@@ -23,28 +20,23 @@ public class GmailLoginTest {
     private By loc_AccountIcon = By.xpath("//*[@id=\"gb\"]/div[1]/div[1]/div[2]/div[5]/div[1]/a/span");
     private By loc_email = By.xpath("//*[@id=\"gb\"]/div[1]/div[1]/div[2]/div[5]/div[2]/div[1]/div");
 
-    @Test
-    public void loginTest(){
-        WebDriverManager.chromedriver().setup();
-        WebDriver driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-        driver.get("https://mail.google.com/mail");
-        driver.manage().window().maximize();
-
+    public void login(WebDriver driver){
         emailFieldWE = driver.findElement(loc_emailField);
-        emailFieldWE.sendKeys("storagestorage015@gmail.com");
+        emailFieldWE.sendKeys("razenkov.slava@gmail.com");
         nextButton = driver.findElement(loc_nextBtn);
         nextButton.click();
         passField = driver.findElement(loc_passwordField);
-        passField.sendKeys("99Francs");
+        passField.sendKeys("TooToo7772121RazE");
         passField.sendKeys(Keys.ENTER);
         doneWE = driver.findElement(loc_doneBtn);
         doneWE.click();
+    }
+
+    public boolean isLogIn(WebDriver driver){
         icon = driver.findElement(loc_AccountIcon);
         icon.click();
         emailWE = driver.findElement(loc_email);
-        Assert.assertTrue(emailWE.getText().contains("storagestorage015@gmail.com"));
-        driver.close();
+        return emailWE.getText().contains("razenkov.slava@gmail.com");
     }
-}
 
+}
